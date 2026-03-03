@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 import requests
 import notify2
@@ -55,7 +57,7 @@ if "results" in geo_res:
         "hourly": "temperature_2m,weathercode,apparent_temperature",
     }
 
-    target_time = date + "T" + time
+    target_time = datetime.strptime(f"{date}T{time}", "%Y-%m-%dT%H:%M").strftime("%Y-%m-%dT%H:00")
 
     weather_res = requests.get(weather_url, params=weather_params).json()
 
@@ -66,13 +68,16 @@ if "results" in geo_res:
         temp = weather_res["hourly"]["temperature_2m"][i]
         feels = weather_res["hourly"]["apparent_temperature"][i]
         weather_code = weather_res["hourly"]["weathercode"][i]
-        weather_info = f"{city}: {temp}°C, Feels like: {feels}°C, Weather: {WMO.get(weather_code, 'Unknown')}   "
+
+        human_readable_time = datetime.strptime(target_time, "%Y-%m-%dT%H:%M").strftime("%d %B, %H:00")
+        time = human_readable_time + ":" if target_time!=datetime.now().strftime("%Y-%m-%dT%H:00") else human_readable_time + " (Now)"
+        weather_info = f"{city}\n{time}\n{temp}°C, Feels like: {feels}°C\nWeather: {WMO.get(weather_code, 'Unknown')}   "
 
         print("Weather:", weather_info)
 
         # 3. Cross-platform notification
         notify2.init("Weather Notification")
-        n = notify2.Notification("Current Weather", weather_info)
+        n = notify2.Notification("Weather Notification", weather_info)
         n.show()
     else:
         print("Weather data not found")

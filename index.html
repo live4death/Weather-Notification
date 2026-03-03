@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App Interface</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+
+    <div class="weather-card">
+        <div class="top-row">
+            <div class="titles">
+                <h1>Weather</h1>
+                <h2>Cloudly</h2>
+            </div>
+            <div class="badges">
+                <input class="badge" id="date-input" placeholder="Select Date and Time" aria-label="Date">
+                <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                <script src="script.js"></script>
+                    <!-- <input class="badge" id="date-input" type="date" aria-label="Date">
+                    <input class="badge" id="time-input" type="time" value="22:00" aria-label="Time"> -->
+                <input class="badge" id="city-input" list="cities" placeholder="Select City" aria-label="City">
+            </div>
+        </div>
+
+        <div class="bottom-row">
+            <div class="icon">
+                ⛅
+            </div>
+            <div class="temperature">
+                48°C
+            </div>
+            <div class="details">
+                <p>Feels Like: 5°C</p>
+                <p>Wind: 3 km/h</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

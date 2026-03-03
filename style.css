@@ -1,0 +1,118 @@
+/* Setăm un fundal frumos pentru a face efectul de sticlă vizibil */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            background: url('https://images.unsplash.com/photo-1558486012-817176f84c6d?q=80&w=2000&auto=format&fit=crop') no-repeat center center/cover;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Containerul principal - Efectul de Glassmorphism */
+        .weather-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            padding: 30px;
+            margin: 20px;
+            width: 100%;
+            max-height: 220px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .top-row {
+            display: flex;          
+            min-width: 0;
+            margin-bottom: 30px;
+        }
+        
+        .titles h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .titles h2 {
+            margin: 5px 0 0 0;
+            font-size: 22px;
+            font-weight: 500;
+            color: #334155;
+        }
+
+        .titles{
+            flex:1;
+            min-width: 0;
+        }
+
+    .badges{
+        flex: 1;
+        gap: 10px;
+        min-width: 0;
+        display: flex;
+    }
+
+    .badge{
+        font-size: 14px;
+        font-weight: 100;
+        border-radius: 8px;
+        border: none;
+        background: rgba(255,255,255,0.12);
+        color: inherit;
+        height: 36px;
+        padding: 10px 12px;
+    }
+
+    #city-input{
+        min-width: 0;
+        flex: 0 0 30%;
+    }
+
+    #date-input{
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .badge option{
+        color: #000;
+    }
+
+        .check {
+            color: #10b981; /* Verde pentru checkmark */
+            font-size: 16px;
+        }
+
+        /* Rândul de jos: Pictogramă, Temperatură și Detalii */
+        .bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .icon {
+            font-size: 100px;
+            line-height: 1;
+            /* Umbră subtilă pentru emoji ca să pară 3D */
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2); 
+        }
+
+        .temperature {
+            font-size: 78px;
+            font-weight: 700;
+            margin-right: auto;
+            margin-left: 50px;
+        }
+
+        .details {
+            text-align: left;
+        }
+
+        .details p {
+            margin: 6px 0;
+            font-size: 24px;
+            font-weight: 500;
+        }
