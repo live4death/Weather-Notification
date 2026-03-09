@@ -49,10 +49,12 @@ body {
 
 .badges {
     flex: 1;
+    flex-wrap: wrap;
     gap: 10px;
     min-width: 0;
     display: flex;
     justify-content: flex-end;
+    max-height: 120px;
 }
 
 input:focus {
@@ -73,14 +75,22 @@ input::placeholder {
     color: #1e293b;
     height: 46px;
     padding: 0 50px 0 20px;
-    flex: 0 0 70%;
+}
+
+.city-search {
+    position: relative;
+    text-align: center;
+    display: inline-block;
 }
 
 .search-icon-abs {
     position: absolute;
-    margin-right: 15px;
-    margin-top: 15px;
-}
+    right: 15px;
+    top: 14px;
+    color: #1e293b;
+    text-decoration: none;
+    color: inherit;
+}   
 
 .bottom-row {
     display: flex;
@@ -131,14 +141,14 @@ input::placeholder {
     margin: 0;
 }
 
-.date-icon{
-    font-size:50px;
+.date-icon {
+    font-size: 50px;
     width: 60px;
     height: 60px;
     margin: 0;
 }
 
-.dates{
+.dates {
     display: flex;
     justify-content: space-between;
     justify-content: center;
@@ -148,110 +158,158 @@ input::placeholder {
     margin: 0;
 }
 
+.time-picker{
+    display: flex;
+    flex-direction: column;
+    position:relative;
+    width:160px;
+}
+
+.time-dropdown{
+    position:absolute;
+    top:40px;
+    left:0;
+    width:160px;
+    max-height: 200px;
+    overflow-y:auto;
+    background:white;
+    border-radius:8px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow:0 4px 15px rgba(0,0,0,0.15);
+    display:none;
+    z-index:100;
+}
+
+.time-option{
+    padding:8px 12px;
+    cursor:pointer;
+}
+
+.time-option:hover{
+    background:#f1f5f9;
+}
+
 #temp-line {
     border-color: #1e293b24;
     width: 100%;
     margin: 0;
 }
 
-    .weather-widget {
-        display: flex;
-        width: fit-content;
-        margin: 0 auto;
-        background-color: var(--bg-light);
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        border: 1px solid #e0e0e0;
-        margin-bottom: 50px;
-        background-color: rgba(84, 78, 78, 0.19);
-;
-    }
+.weather-widget {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+    background-color: var(--bg-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    margin-bottom: 50px;
+    background-color: rgba(84, 78, 78, 0.19);
+    ;
+}
 
-    .day-column {
-        display: flex;
-        flex-direction: column;
-        width: 100px;
-        text-align: center;
-        position: relative;
-        border-right: 1px solid #e0e0e0;
-        background-color: var(--bg-light);
-    }
-    /* Stilizare coloană activă (Astăzi) */
-    /* .day-column.active {
-        border: 2px solid var(--text-blue);
-        border-radius: 6px;
-        box-shadow: inset 0 0 0 1px var(--bg-active-header);
-        z-index: 2; 
-    } */
+.day-column {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    text-align: center;
+    position: relative;
+    border-right: 1px solid #e0e0e0;
+    height: 100%;
+}
 
-    .header {
-        padding-top: 10px;    
-    }
 
-    .day-column.active .header {
-        background-color: var(--bg-active-header);
-    }
+.day-column.active {
+    background-color: rgba(255, 255, 255, 0.6);
+}
 
-    .day-name {
-        font-weight: bold;
-        font-size: 14px;
-    }
-    .date {
-        font-size: 12px;
-        margin-top: 3px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #e0e0e0;
-    }
+.first{
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+    border-left: none !important;
+}
 
-    /* Secțiunea albastră cu soarele/norii */
-    .weather-box {
-        padding: 15px 0;
-        font-size: 32px;
-        position: relative;
-        height: 40px;
-        background-color: #9bcbf876;
-        border-bottom: 1px solid #e0e0e0;
-    }
+.last{
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+    border-right: none !important;
+}
 
-    /* Restul detaliilor (temperaturi, vânt) */
-    .details-box {
-        padding: 15px 5px 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        font-size: 13px;
-        color: #333;
-    }
+.day-link{
+    text-decoration: none;
+    color: inherit;
+}
 
-    .temp-badge {
-        width: 50px;
-        padding: 4px 0;
-        border-radius: 4px;
-        font-weight: bold;
-        font-size: 13px;
-    }
-    
-    .temp-high {
-        background-color: var(--color-high-temp);
-        color: #222;
-    }
-    .temp-low {
-        background-color: var(--color-low-temp);
-        color: white;
-    }
+.header {
+    padding-top: 10px;
+}
 
-    .stat-row {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 12px;
-    }
+.day-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: #1e293b;
+}
 
-    .misc-icons {
-        margin-top: 5px;
-        color: #799bbb;
-        font-size: 14px;
-        letter-spacing: 1px;
-    }
+.date {
+    font-size: 12px;
+    margin-top: 3px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #1e293b;
+}
 
+/* Secțiunea albastră cu soarele/norii */
+.weather-box {
+    padding: 15px 0;
+    font-size: 32px;
+    position: relative;
+    height: 40px;
+    background-color: #9bcbf876;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Restul detaliilor (temperaturi, vânt) */
+.details-box {
+    padding: 15px 5px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #333;
+}
+
+.temp-badge {
+    width: 50px;
+    padding: 4px 0;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.temp-high {
+    color: #1e293b;
+}
+
+.temp-low {
+    color: #1e293b;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+}
+
+.misc-icons {
+    margin-top: 5px;
+    color: #799bbb;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+#main-emoji{
+    margin: 0;
+}

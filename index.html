@@ -5,19 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App Interface</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
+    <link href="https://cdn.syncfusion.com/ej2/25.1.35/material.css" rel="stylesheet">
+    <script src="https://cdn.syncfusion.com/ej2/25.1.35/dist/ej2.min.js"></script></head>
 <body>
     <div class="weather-card">
         <div class="top-row">
             <div class="titles">
                 <h1>Weather</h1>
-                <h2>Cloudy</h2>
+                <h1 id="city-name"></h1>
+                <h2 id="condition"></h2>
             </div>
             <div class="badges">
-                <input class="badge" id="city-input" list="cities" placeholder="Search your city" aria-label="City">
-                <i class="fas fa-magnifying-glass search-icon-abs"></i>            
+                <div class="city-search">
+                    <input list="cities" class="badge" id="city-input" placeholder="Search your city" aria-label="City">
+                    <a href="#" class="search-icon-abs"><i class="fas fa-magnifying-glass"></i></a>
+                    <datalist id="cities">
+                    </datalist>
+                </div>
+                <div class="time-picker">
+                    <input type="text" id="time-input" class="badge" placeholder="Select time" readonly>
+                    <div class="time-dropdown" id="time-dropdown"></div>
+                </div>            
             </div>
         </div>
         <!-- <div class="dates">
@@ -51,7 +60,8 @@
         </div> -->
 
 <div class="weather-widget">
-    <div class="day-column active">
+    <a class="day-link" href="#">
+    <div class="day-column active first" id="day1">
         <div class="header">
             <div class="day-name">MA</div>
             <div class="date">Astăzi</div>
@@ -65,8 +75,10 @@
             <div class="stat-row">↙ 6 km/h</div>
         </div>
     </div>
+    </a>
 
-    <div class="day-column">
+    <a class="day-link" href="#">
+    <div class="day-column" id="day2">
         <div class="header">
             <div class="day-name">MI</div>
             <div class="date">Mâine</div>
@@ -80,8 +92,10 @@
             <div class="stat-row">⬅ 5 km/h</div>
         </div>
     </div>
+    </a>
 
-    <div class="day-column">
+    <a class="day-link" href="#">
+    <div class="day-column" id="day3">
         <div class="header">
             <div class="day-name">JO</div>
             <div class="date">5/3</div>
@@ -96,8 +110,10 @@
 
         </div>
     </div>
+    </a>
 
-    <div class="day-column">
+    <a class="day-link" href="#">
+    <div class="day-column" id="day4">
         <div class="header">
             <div class="day-name">VI</div>
             <div class="date">6/3</div>
@@ -112,8 +128,10 @@
 
         </div>
     </div>
+    </a>
 
-    <div class="day-column">
+    <a class="day-link" href="#">
+    <div class="day-column last" id="day5">
         <div class="header">
             <div class="day-name">SB</div>
             <div class="date">7/3</div>
@@ -126,22 +144,22 @@
             <div class="temp-badge temp-low">2 °C</div>
         </div>
     </div>
+    </a>
 </div>
 
 
         <div class="bottom-row">
-            <div class="icon">
+            <div class="icon" id="main-emoji">
                 ⛅
             </div>
-            <div class="temperature">
-                48°C
+            <div class="temperature" id="temperature-now">
             </div>
             <div class="details">
-                <p>Feels Like: 5°C</p>
-                <p>Wind: 3 km/h</p>
+                <p id="feeling">Feels Like: °C</p>
+                <p id="wind">Wind:  km/h</p>
             </div>
         </div>
     </div>
-
+    <script src="script.js"></script>
 </body>
 </html>
